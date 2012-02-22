@@ -60,7 +60,7 @@ class Form extends \Laravel\Form {
 		array_unshift($args, $name);
 
 		// Build the HTML
-		$out  = '<fieldset class="'.$class.'">';
+		$out  = '<div class="'.$class.'">';
 		if ( ! empty($label))
 		{
 			$out .= Form::label($name, $label, array('class' => 'control-label'));
@@ -72,15 +72,15 @@ class Form extends \Laravel\Form {
 			if ( ! empty($opts[$key]) and is_string($opts[$key]))
 			{
 				// @todo this should be 'help-block' for vertical forms
-				$out .= '<span class="help-inline">'. $opts[$key] .'</span>';
+				$out .= '<span class="help-block">'. $opts[$key] .'</span>';
 			}
 		}
 		if ( ! empty($opts['help']))
 		{
-			$out .= '<p class="help-text">'. $opts['help'] .'</p>';
+			$out .= '<p class="help-block">'. $opts['help'] .'</p>';
 		}
 		$out .= '</div>'; // div.controls
-		$out .= '</fieldset>'.PHP_EOL;
+		$out .= '</div>'.PHP_EOL;
 
 		return $out;
 	}
@@ -117,7 +117,7 @@ class Form extends \Laravel\Form {
 		}
 		if ( ! empty($opts['help']))
 		{
-			$out .= '<p class="help-text">'. $opts['help'] .'</p>';
+			$out .= '<p class="help-block">'. $opts['help'] .'</p>';
 		}
 		$out .= '</div></div>'; // div.control-list div.controls
 		$out .= '</fieldset>';
@@ -157,9 +157,9 @@ class Form extends \Laravel\Form {
 	 */
 	public static function actions($buttons)
 	{
-		$out  = '<fieldset class="form-actions">';
+		$out  = '<div class="form-actions">';
 		$out .= is_array($buttons) ? implode('', $buttons) : $buttons;
-		$out .= '</fieldset>';
+		$out .= '</div>';
 
 		return $out;
 	}
