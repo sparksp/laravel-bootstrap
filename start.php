@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Twitter for Laravel
- * 
- * The beginings of Twitter support in Laravel, starting with Bootstrap.
+ * Twitter's Bootstrap for Laravel
  * 
  * @package     Bundles
  * @subpackage  Twitter
@@ -14,5 +12,5 @@
  */
 
 Autoloader::map(array(
-	'Twitter\\Bootstrap\\Form' => __DIR__.DIRECTORY_SEPARATOR.'bootstrap'.DIRECTORY_SEPARATOR.'form'.EXT,
+	'Bootsparks\\Form' => __DIR__.DS.'form'.EXT,
 ));

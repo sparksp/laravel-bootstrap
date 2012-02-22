@@ -1,40 +1,58 @@
-# Twitter for Laravel
+# Bootsparks Bundle
 
-The beginings of Twitter support in Laravel, starting with [Bootstrap](https://twitter.github.com/bootstrap/).
+Twitter's Bootstrap Forms support in Laravel.
 
-## Bootstrap Forms
+## Installation
 
-Twitter for Laravel is designed to work with [Bootstrap 2.0-wip](https://github.com/twitter/bootstrap/tree/2.0-wip).
+Install via the Artisan CLI:
 
-### Installation
+```sh
+php artisan bundle:install bootsparks
+```
 
-To use Twitter Bootstrap forms you should update the aliases in **application/config/application.php**
+## Bundle Registration
 
-    'Form' => 'Twitter\\Bootstrap\\Form',
+Add the following to your application/bundles.php file:
 
-### Usage
+```php
+'bootsparks' => array(
+    'autoloads' => array(
+        'map' => array(
+            'Bootsparks\\Form' => '(:bundle)/form.php',
+        ),
+    ),
+),
+```
 
-The Twitter\Bootstrap\Form extends Laravel\Form so you can drop it in to existing forms; it also adds some useful functions.  Here's an example of a Login form:
+## Class Alias
 
-	<article>
-		<h1>Log in</h1>
+`Bootsparks\Form` extends `Laravel\Form` so you can use it to replace your existing form code.  To do this you'll need to edit **application/config/application.php** and update the alias for **Form**.
 
-		<?php echo Form::open(URL::to('login'), 'POST', array('class' => Form::TYPE_HORIZONTAL)); ?>
-		<?php echo Form::token(); ?>
-		<?php echo Form::hidden('from', Input::get('from', Request::uri() === 'login' ? '' : Request::uri())); ?>
+## Guide
 
-		<?php if ($errors->has('login')): ?>
-			<?php echo $errors->first('login', '<div class="alert-message error">:message</div>'); ?>
-		<?php endif; ?>
+Here's an example of a Login form using Bootsparks:
 
-		<?php echo Form::field('email', 'email', 'E-mail Address', array(Input::get('email')), array('error' => $errors->has('email'))); ?>
-		<?php echo Form::field('password', 'password', 'Password', array(), array('error' => $errors->has('password'))); ?>
-		<?php echo Form::field('labelled_checkbox', 'remember', '', array('Use a '.HTML::link('cookies', 'cookie', array('title' => 'Find out more about the cookies we use and how to delete them', 'rel' => 'twipsy', 'target' => '_blank')).' to remember my details', 'yes')); ?>
+```php
+<article>
+	<h1>Log in</h1>
 
-		<?php echo Form::actions(Form::submit("Log in", array('class' => 'primary'))); ?>
+	<?php echo Form::open(URL::to('login'), 'POST', array('class' => Form::TYPE_HORIZONTAL)); ?>
+	<?php echo Form::token(); ?>
+	<?php echo Form::hidden('from', Input::get('from', Request::uri() === 'login' ? '' : Request::uri())); ?>
 
-		<?php echo Form::close(); ?>
-	</article>
+	<?php if ($errors->has('login')): ?>
+		<?php echo $errors->first('login', '<div class="alert-message error">:message</div>'); ?>
+	<?php endif; ?>
+
+	<?php echo Form::field('email', 'email', 'E-mail Address', array(Input::get('email')), array('error' => $errors->has('email'))); ?>
+	<?php echo Form::field('password', 'password', 'Password', array(), array('error' => $errors->has('password'))); ?>
+	<?php echo Form::field('labelled_checkbox', 'remember', '', array('Use a '.HTML::link('cookies', 'cookie', array('title' => 'Find out more about the cookies we use and how to delete them', 'rel' => 'twipsy', 'target' => '_blank')).' to remember my details', 'yes')); ?>
+
+	<?php echo Form::actions(Form::submit("Log in", array('class' => 'primary'))); ?>
+
+	<?php echo Form::close(); ?>
+</article>
+```
 
 The **Form::field** method allows you to generate a field for any Form:: field.  The parameters are:
 

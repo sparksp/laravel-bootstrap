@@ -1,4 +1,4 @@
-<?php namespace Twitter\Bootstrap;
+<?php namespace Bootsparks;
 
 use \HTML;
 use \ReflectionClass;
