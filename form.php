@@ -111,7 +111,6 @@ class Form extends \Laravel\Form {
 		{
 			if ( ! empty($opts[$key]) and is_string($opts[$key]))
 			{
-				// @todo this should be 'help-inline' for vertical forms
 				$out .= '<p class="help-block">'. $opts[$key] .'</p>';
 			}
 		}
